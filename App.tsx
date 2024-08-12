@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import React from 'react';
+import React, {useEffect} from 'react';
 import Home from './src/screen/Home';
 import Search from './src/screen/Search';
 import Activity from './src/screen/Activity';
@@ -11,10 +11,28 @@ import Status from './src/screen/Status';
 import FriendProfile from './src/screen/FriendProfile';
 import EditProfile from './src/screen/EditProfile';
 import Ionic from 'react-native-vector-icons/Ionicons';
+import notifee, {AuthorizationStatus} from '@notifee/react-native';
 
 const App = () => {
   const Tab = createBottomTabNavigator();
   const Stack = createNativeStackNavigator();
+
+  //안드로이드 권한 요청
+  useEffect(() => {
+    // 알림 권한 요청 및 초기화
+    async function initialize() {
+      const settings = await notifee.requestPermission();
+
+      if (settings.authorizationStatus >= AuthorizationStatus.AUTHORIZED) {
+        console.log('Notification permission granted.');
+      } else {
+        console.log('Notification permission denied.');
+      }
+    }
+
+    initialize();
+  }, []);
+
   const BottomTabScreen = () => {
     return (
       <Tab.Navigator

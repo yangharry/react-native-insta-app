@@ -129,7 +129,8 @@ const Status = ({route, navigation}) => {
           justifyContent: 'space-around',
           marginVertical: 10,
           width: '100%',
-        }}></View>
+        }}
+      />
     </SafeAreaView>
   );
 };

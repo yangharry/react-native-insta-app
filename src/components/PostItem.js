@@ -3,9 +3,43 @@ import React, {useState} from 'react';
 import Feather from 'react-native-vector-icons/Feather';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionic from 'react-native-vector-icons/Ionicons';
+import notifee, {AndroidImportance} from '@notifee/react-native';
 
 const PostItem = ({data}) => {
   const [like, setLike] = useState(data.isLiked);
+  const handleNotification = async name => {
+    await notifee.displayNotification({
+      title: `${name}님을 클릭 했습니다.`,
+      body: name,
+      android: {
+        channelId: 'insta-channel',
+        importance: AndroidImportance.HIGH,
+        largeIcon: require('../../assets/images/iu.jpg'),
+        timestamp: Date.now(),
+        showTimestamp: true,
+        smallIcon: 'ic_launcher_round',
+        color: 'red',
+
+        pressAction: {
+          id: 'default',
+          mainComponent: 'ReactNativeInstaApp',
+        },
+      },
+      ios: {
+        attachments: [
+          {
+            url: require('../../assets/images/iu.jpg'),
+          },
+        ],
+        foregroundPresentationOptions: {
+          badge: true,
+          sound: true,
+          banner: true,
+          list: true,
+        },
+      },
+    });
+  };
 
   return (
     <View
@@ -22,10 +56,12 @@ const PostItem = ({data}) => {
           padding: 15,
         }}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Image
-            source={data.postImage}
-            style={{width: 40, height: 40, borderRadius: 100}}
-          />
+          <TouchableOpacity onPress={() => handleNotification(data.PostTitle)}>
+            <Image
+              source={data.postImage}
+              style={{width: 40, height: 40, borderRadius: 100}}
+            />
+          </TouchableOpacity>
           <View style={{paddingLeft: 5}}>
             <Text style={{fontSize: 15, fontWeight: 'bold'}}>
               {data.PostTitle}

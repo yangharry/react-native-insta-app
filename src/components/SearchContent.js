@@ -1,40 +1,40 @@
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 
-const searchDate = [
-  {
-    id: 0,
-    images: [
-      require('../../assets/images/post1.jpeg'),
-      require('../../assets/images/post2.jpeg'),
-      require('../../assets/images/post3.jpeg'),
-      require('../../assets/images/post4.jpeg'),
-      require('../../assets/images/post5.jpeg'),
-      require('../../assets/images/post6.jpeg'),
-    ],
-  },
-  {
-    id: 1,
-    images: [
-      require('../../assets/images/post7.jpeg'),
-      require('../../assets/images/post8.jpeg'),
-      require('../../assets/images/post9.jpeg'),
-      require('../../assets/images/post10.jpeg'),
-      require('../../assets/images/post11.jpeg'),
-      require('../../assets/images/post12.jpeg'),
-    ],
-  },
-  {
-    id: 2,
-    images: [
-      require('../../assets/images/post13.jpeg'),
-      require('../../assets/images/post14.jpeg'),
-      require('../../assets/images/post15.jpeg'),
-    ],
-  },
-];
+const SearchContent = props => {
+  const searchDate = [
+    {
+      id: 0,
+      images: [
+        require('../../assets/images/post1.jpeg'),
+        require('../../assets/images/post2.jpeg'),
+        require('../../assets/images/post3.jpeg'),
+        require('../../assets/images/post4.jpeg'),
+        require('../../assets/images/post5.jpeg'),
+        require('../../assets/images/post6.jpeg'),
+      ],
+    },
+    {
+      id: 1,
+      images: [
+        require('../../assets/images/post7.jpeg'),
+        require('../../assets/images/post8.jpeg'),
+        require('../../assets/images/post9.jpeg'),
+        require('../../assets/images/post10.jpeg'),
+        require('../../assets/images/post11.jpeg'),
+        require('../../assets/images/post12.jpeg'),
+      ],
+    },
+    {
+      id: 2,
+      images: [
+        require('../../assets/images/post13.jpeg'),
+        require('../../assets/images/post14.jpeg'),
+        require('../../assets/images/post15.jpeg'),
+      ],
+    },
+  ];
 
-const SearchContent = () => {
   return (
     <View>
       {searchDate.map((data, index) => {
@@ -52,8 +52,8 @@ const SearchContent = () => {
                   return (
                     <TouchableOpacity
                       key={imgIndex}
-                      //   onPressIn={() => props.data(imageData)}
-                      //   onPressOut={() => props.data(null)}
+                      onPressIn={() => props.data(imageData)}
+                      onPressOut={() => props.data(null)}
                       style={{
                         marginBottom: 2,
                         width: '33%',
@@ -81,8 +81,8 @@ const SearchContent = () => {
                     return (
                       <TouchableOpacity
                         key={imgIndex}
-                        // onPressIn={() => props.data(imageData)}
-                        // onPressOut={() => props.data(null)}
+                        onPressIn={() => props.data(imageData)}
+                        onPressOut={() => props.data(null)}
                         style={{
                           marginBottom: 2,
                           width: '49.5%',
@@ -96,8 +96,8 @@ const SearchContent = () => {
                   })}
                 </View>
                 <TouchableOpacity
-                  //   onPressIn={() => props.data(data.images[5])}
-                  //   onPressOut={() => props.data(null)}
+                  onPressIn={() => props.data(data.images[5])}
+                  onPressOut={() => props.data(null)}
                   style={{marginLeft: 2, width: '33%'}}>
                   <Image
                     source={data.images[5]}
@@ -109,7 +109,10 @@ const SearchContent = () => {
             {data.id === 2 ? (
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <TouchableOpacity style={{marginRight: 2, width: '66.5%'}}>
+                <TouchableOpacity
+                  onPressIn={() => props.data(data.images[2])}
+                  onPressOut={() => props.data(null)}
+                  style={{marginRight: 2, width: '66.5%'}}>
                   <Image
                     source={data.images[2]}
                     style={{width: '100%', height: 302}}
@@ -126,6 +129,8 @@ const SearchContent = () => {
                     return (
                       <TouchableOpacity
                         key={imgIndex}
+                        onPressIn={() => props.data(imageData)}
+                        onPressOut={() => props.data(null)}
                         style={{
                           marginBottom: 2,
                           width: '100%',
